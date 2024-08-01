@@ -1,4 +1,4 @@
-# Swiggy Live Food App
+# Live Food App
 
 This project is a food delivery application that uses live data from Swiggy. The app is built using React to provide a seamless and interactive user experience.
 
@@ -31,7 +31,7 @@ Ensure you have the following installed on your machine:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/swiggy-live-food-app.git
+    git clone https://github.com/yourusername/live-food-app.git
     cd swiggy-live-food-app
     ```
 
