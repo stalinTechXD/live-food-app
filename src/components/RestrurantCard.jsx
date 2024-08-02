@@ -1,6 +1,5 @@
 import {IMG_CDN_URL } from '../config';
 export const RestrauntCard = (props) => {
-    console.log(props);
    return (
        
        <div className="card">
