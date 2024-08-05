@@ -1,7 +1,8 @@
 import {restrauntList} from './../config'
 import {RestrauntCard} from './RestrurantCard'
 import React from 'react';
-import {useState} from 'react';
+import {useState , useEffect} from 'react';
+import Shimmer from './Shimmer';
 
 // what is state.
 // what is hook. -> just a function
@@ -25,8 +26,25 @@ function filterData(searchText, restaurants) {
 const Body = () =>
     {
               const [searchText, setSearchText] = useState("");// returns an array the first element is a variable the first element
-              const [restaurant , setRestaurant] = useState(restrauntList);
-              return (
+              const [allrestaurant , setallRestaurant] = useState([]);
+              const  [filterresturatant , setfilteredrestuarts] = useState([]);
+              useEffect( () =>
+                {
+                 getRestaurants();                
+                }, []
+              );
+
+              async function getRestaurants(){
+
+                setallRestaurant(restrauntList);
+                setfilteredrestuarts(restrauntList);
+               console.log("state changes");
+            }
+
+            // if restruant is empy load the shimmer ui
+            // if restuart has date => actual data UI.
+
+              return (filterresturatant?.length > 0 )? (
                 <>
                     <div className="search-container">
                         <input type="text" className="search-input" placeholder="Search" value={searchText}
@@ -36,20 +54,19 @@ const Body = () =>
                         /> 
                         <button className="search-btn" onClick = {() =>
                         {
-                          const data=  filterData(searchText , restaurant);
-                          setRestaurant(data);
+                          const data=  filterData(searchText , allrestaurant);
+                          setfilteredrestuarts(data);
                         }}>Search</button>
                     </div>
                 <div className="restaurant-list">
-                    {restaurant.map((res) => {
-                        return <RestrauntCard {...res.card.card} key={res.card.card.info.id} />;
+                    {filterresturatant?.map((res) => {
+                        return <RestrauntCard {...res?.card?.card} key={res?.card?.card?.info.id} />;
                     })}
                 </div>
                 </>
+            ):(
+                <Shimmer />
             );
     }
 
 export default Body;
-
-// why do we need this state variable
-// 
